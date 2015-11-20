@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TR-069 Data Model Bibliographic References
+
+  Notice:
+    The Broadband Forum is a non-profit corporation organized to create
+    guidelines for broadband network system development and deployment.
+    This Broadband Forum Document has been approved by members of the
+    Forum. This Broadband Forum Document is not binding on the Broadband
+    Forum, any of its members, or any developer or service provider.
+    This Broadband Forum Document is subject to change, but only with
+    approval of members of the Forum. This Document is copyrighted by
+    the Broadband Forum, and all rights are reserved. Portions of this
+    Document may be copyrighted by Broadband Forum members.
+
+    THIS SPECIFICATION IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER,
+    AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT IS EXPRESSLY
+    DISCLAIMED. ANY USE OF THIS SPECIFICATION SHALL BE MADE ENTIRELY AT
+    THE IMPLEMENTER'S OWN RISK, AND NEITHER the Forum, NOR ANY OF ITS
+    MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY
+    IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER,
+    DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS SPECIFICATION.
+
+    Broadband Forum Documents may be copied, downloaded, stored on a
+    server or otherwise re-distributed in their entirety only, and may
+    not be modified without the advance written permission of the
+    Broadband Forum.
+
+    The text of this notice must be included in all copies of this
+    Broadband Forum Document.
+
+  Summary:
+    TR-069 data model bibliographic references.
+
+  Editor:
+    * Douglas Knisely, Qualcomm, Inc.
+
+  BroadbandHome Working Group Chairs:
+    * Jason Walls, QA Cafe
+    * John Blackford, Pace
+
+  Issue History (Filename: Approval Date: Publication Date: Changes):
+    * tr-069-biblio.xml: March 2009 - June 2014:
+      - many updates
+    * tr-069-1-1-0-biblio.xml: 8 September 2014: 17 September 2014
+      - added references in support of tr-181-2-8-0.xml
+    * tr-069-1-2-0-biblio.xml: 1 December 2014: 11 February 2015
+      - added references in support of tr-181-2-9-0.xml
+-->
+
+<dm:document xmlns:dm="urn:broadband-forum-org:cwmp:datamodel-1-5" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="urn:broadband-forum-org:cwmp:datamodel-1-5
+                                   http://www.broadband-forum.org/cwmp/cwmp-datamodel-1-5.xsd" 
+             spec="urn:broadband-forum-org:tr-069-1-2-0" file="tr-069-biblio-1-2-0.xml">
+
+  <import file="tr-069-1-1-biblio.xml" spec="urn:broadband-forum-org:tr-069-1-1"/>
+
+  <bibliography>    
+    <reference id="IEEE1905.1a">
+      <name>IEEE 1905.1a</name>
+      <title>IEEE Std 1905.1a, Convergent Digital Home Network for Heterogeneous Technologies Amendment 1: Support of new MAC/PHYs and enhancements, IEEE, December 2014.</title>
+      <organization>IEEE</organization>
+      <date>December 2014</date>
+      <hyperlink>http://www.IEEE.org</hyperlink>
+    </reference>
+    <reference id="TR-143a1">
+      <name>TR-143 Amendment 1</name>
+      <title>Enabling Network Throughput Performance Tests and Statistical Monitoring</title>
+      <organization>Broadband Forum</organization>
+      <category>TR</category>
+      <date>December 2014</date>
+    </reference>
+  </bibliography>
+</dm:document>

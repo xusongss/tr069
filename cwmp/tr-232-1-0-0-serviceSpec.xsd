@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    IPDR Service Specification for Bulk Data Collection
+    
+    Notice:
+    
+    The Broadband Forum is a non-profit corporation organized to create
+    guidelines for broadband network system development and deployment.
+    This Broadband Forum Document has been approved by members of the
+    Forum. This Broadband Forum Document is not binding on the Broadband
+    Forum, any of its members, or any developer or service provider.
+    This Broadband Forum Document is subject to change, but only with
+    approval of members of the Forum.  This Document is copyrighted by
+    the Broadband Forum, and all rights are reserved.  Portions of this
+    Document may be copyrighted by Broadband Forum members.
+    
+    This Broadband Forum Document is provided AS IS, WITH ALL FAULTS.
+    ANY PERSON HOLDING A COPYRIGHT IN THIS BROADBAND FORUM DOCUMENT,
+    OR ANY PORTION THEREOF, DISCLAIMS TO THE FULLEST EXTENT PERMITTED
+    BY LAW ANY REPRESENTATION OR WARRANTY, EXPRESS OR IMPLIED,
+    INCLUDING, BUT NOT LIMITED TO, ANY WARRANTY: 
+    
+    (a) OF ACCURACY, COMPLETENESS, MERCHANTABILITY, FITNESS FOR A
+    PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE;
+    (b) THAT THE CONTENTS OF THIS BROADBAND FORUM DOCUMENT ARE SUITABLE
+    FOR ANY PURPOSE, EVEN IF THAT PURPOSE IS KNOWN TO THE COPYRIGHT
+    HOLDER;
+    (c) THAT THE IMPLEMENTATION OF THE CONTENTS OF THE DOCUMENT WILL NOT
+    INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR
+    OTHER RIGHTS.
+    
+    By using this Broadband Forum Document, users acknowledge that
+    implementation may require licenses to patents.  The Broadband Forum
+    encourages but does not require its members to identify such
+    patents.  For a list of declarations made by Broadband Forum member
+    companies, please see http://www.broadband-forum.org.  No assurance
+    is given that licenses to patents necessary to implement this
+    Document will be available for license at all or on reasonable and
+    non-discriminatory terms.
+    
+    ANY PERSON HOLDING A COPYRIGHT IN THIS BROADBAND FORUM DOCUMENT, OR
+    ANY PORTION THEREOF, DISCLAIMS TO THE FULLEST EXTENT PERMITTED BY
+    LAW (A) ANY LIABILITY (INCLUDING DIRECT, INDIRECT, SPECIAL, OR
+    CONSEQUENTIAL DAMAGES UNDER ANY LEGAL THEORY) ARISING FROM OR
+    RELATED TO THE USE OF OR RELIANCE UPON THIS DOCUMENT; AND (B) ANY
+    OBLIGATION TO UPDATE OR CORRECT THIS DOCUMENT.
+    
+    Broadband Forum Documents may be copied, downloaded, stored on a
+    server or otherwise re-distributed in their entirety only, and may
+    not be modified without the advance written permission of the
+    Broadband Forum.
+    
+    The text of this notice must be included in all copies of this
+    Broadband Forum Document.
+    
+    Summary:
+    This document defines the IPDR Service Definition for the Bulk Data
+    Service Specification.
+    
+    Version History:
+    * May 2012: Initial Version
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ipdr="http://www.ipdr.org/namespaces/ipdr"
+    xmlns:bdc="urn:broadband-forum-org:ipdr:tr-232-1-0"
+    targetNamespace="urn:broadband-forum-org:ipdr:tr-232-1-0"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    
+    <xs:include schemaLocation="http://www.ipdr.org/public/IPDRTypes.xsd"/>
+    <xs:import namespace="http://www.ipdr.org/namespaces/ipdr" 
+               schemaLocation="http://www.ipdr.org/public/IPDRDoc3.5.1.xsd"/>
+    
+    
+    <xs:element name="OUI" type="xs:string">
+        <xs:annotation>
+            <xs:appinfo>
+                The value MUST be a valid OUI as defined in: 
+                Organizationally Unique Identifiers (OUIs)
+                http://standards.ieee.org/faqs/OUI.html 
+            </xs:appinfo>
+            <xs:documentation>
+                Organizationally unique identifier of the device manufacturer.  
+                Represented as a six hexadecimal-digit value using all 
+                upper-case letters and including any leading zeros.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="ProductClass" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>
+                Identifier of the class of product for which the serial number
+                applies.  That is, for a given manufacturer, this parameter is
+                used to identify the product or class of product over which 
+                the SerialNumber parameter is unique. 
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="SerialNumber" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>
+                Identifier of the particular device that is unique for the 
+                indicated class of product and manufacturer.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="Suspect" type="xs:boolean">
+        <xs:annotation>
+            <xs:documentation>
+                The data integrity status of the bulk data being collected by 
+                this device.  A false value means that there is no problem 
+                with this report and that the data is complete. A true value 
+                means that there is a problem with this report and that the 
+                data contained in this report is not complete.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="Name" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>
+                The fully qualified name of a CWMP parameter that is being 
+                collected as bulk data.  The parameter name MUST adhere to the 
+                requirements specified in Section 3.6.1/TR-069a4 regarding 
+                instance identifiers and the value of the InstanceMode 
+                parameter.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="Value" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>
+                The value, in string format, of the CWMP parameter defined
+                that is being collected as bulk data.  Only printable ASCII
+                characters can be present in the transmitted data (i.e.
+                characters whose hex ASCII representation are inside the
+                inclusive range of hex 20 to 7E) and any non-ASCII
+                characters or non-printable ASCII characters that exist in 
+                the original data MUST be converted to the ‘.’ (hex 2E) 
+                character before transmission.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="BulkData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="bdc:Name"/>
+                <xs:element ref="bdc:Value"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="BulkDataReport">
+        <xs:complexContent>
+            <xs:extension base="ipdr:IPDRType">
+                <xs:sequence>
+                    <xs:element ref="bdc:OUI" minOccurs="1"/>
+                    <xs:element ref="bdc:ProductClass" minOccurs="1"/>
+                    <xs:element ref="bdc:SerialNumber" minOccurs="1"/>
+                    <xs:element ref="bdc:Suspect" minOccurs="1"/>
+                    <xs:element ref="bdc:BulkData" minOccurs="0" 
+                                maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+</xs:schema>
